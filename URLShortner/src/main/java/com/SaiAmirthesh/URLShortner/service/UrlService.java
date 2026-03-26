@@ -23,7 +23,7 @@ public class UrlService {
     public UrlMapping createShortUrl(String originalUrl){
         String shortcode = generateUniqueShortCode();
         UrlMapping urlMapping = new UrlMapping();
-        urlMapping.setShort_code(shortcode);
+        urlMapping.setShortCode(shortcode);
         urlMapping.setUrl(originalUrl);
         return urlRepository.save(urlMapping);
     }
@@ -43,32 +43,31 @@ public class UrlService {
             if(attempt>10){
                 throw new RuntimeException("Failed to Generate a unique short code within 10 attempts");
             }
-        }while(urlRepository.existsById(shortCode));
+        }while(urlRepository.existsByshortCode(shortCode));
         return shortCode;
     }
 
-    @Transactional(readOnly = true)
     public Optional<UrlMapping> getOriginalUrl(String shortCode){
-        Optional<UrlMapping> urlMapping = urlRepository.findById(shortCode);
+        Optional<UrlMapping> urlMapping = urlRepository.findByshortCode(shortCode);
         if(urlMapping.isPresent()){
             UrlMapping mapping = urlMapping.get();
-            mapping.setAccess_count(mapping.getAccess_count()+1);
+            mapping.setAccessCount(mapping.getAccessCount()+1);
             return Optional.of(urlRepository.save(mapping));
         }
         return Optional.empty();
     }
 
     public Optional<UrlMapping> getUrlStats(String shortCode){
-        return urlRepository.findById(shortCode);
+        return urlRepository.findByshortCode(shortCode);
     }
 
     @Transactional
     public Optional<UrlMapping> updateShortUrl(String shortCode ,String newUrl){
-        Optional<UrlMapping> existingUrl = urlRepository.findById(shortCode);
+        Optional<UrlMapping> existingUrl = urlRepository.findByshortCode(shortCode);
         if(existingUrl.isPresent()){
             UrlMapping mapping = existingUrl.get();
             mapping.setUrl(newUrl);
-            mapping.setUpdated_at(LocalDateTime.now());
+            mapping.setUpdatedAt(LocalDateTime.now());
             return Optional.of(urlRepository.save(mapping));
         }
         return Optional.empty();
@@ -76,8 +75,8 @@ public class UrlService {
 
 
     public boolean deleteUrl(String shortCode){
-        if(urlRepository.existsById(shortCode)){
-            urlRepository.deleteById(shortCode);
+        if(urlRepository.existsByshortCode(shortCode)){
+            urlRepository.deleteByshortCode(shortCode);
             return true;
         }
         return false;

@@ -32,11 +32,11 @@ public class UrlController {
         try {
             UrlMapping savedMapping = urlService.createShortUrl(urlMapping.getUrl());
             Map<String, Object> response = new HashMap<>();
-            response.put("id", savedMapping.getShort_code());
+            response.put("id", savedMapping.getId());
             response.put("url", savedMapping.getUrl());
-            response.put("shortCode", savedMapping.getShort_code());
-            response.put("createdAt", savedMapping.getCreated_at());
-            response.put("updatedAt", savedMapping.getUpdated_at());
+            response.put("shortCode", savedMapping.getShortCode());
+            response.put("createdAt", savedMapping.getCreatedAt());
+            response.put("updatedAt", savedMapping.getUpdatedAt());
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -50,11 +50,11 @@ public class UrlController {
         if (urlMapping.isPresent()) {
             UrlMapping mapping = urlMapping.get();
             Map<String, Object> response = new HashMap<>();
-            response.put("id", mapping.getShort_code());
+            response.put("id", mapping.getId());
             response.put("url", mapping.getUrl());
-            response.put("shortCode", mapping.getShort_code());
-            response.put("createdAt", mapping.getCreated_at());
-            response.put("updatedAt", mapping.getUpdated_at());
+            response.put("shortCode", mapping.getShortCode());
+            response.put("createdAt", mapping.getCreatedAt());
+            response.put("updatedAt", mapping.getUpdatedAt());
             return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.notFound().build();
@@ -75,11 +75,11 @@ public class UrlController {
         if(updateMapping.isPresent()){
             UrlMapping mapping = updateMapping.get();
             Map<String,Object> response = new HashMap<>();
-            response.put("id",mapping.getShort_code());
+            response.put("id",mapping.getId());
             response.put("url",mapping.getUrl());
-            response.put("shortCode",mapping.getShort_code());
-            response.put("createdAt",mapping.getCreated_at());
-            response.put("updatedAt",mapping.getUpdated_at());
+            response.put("shortCode",mapping.getShortCode());
+            response.put("createdAt",mapping.getCreatedAt());
+            response.put("updatedAt",mapping.getUpdatedAt());
             return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.notFound().build();
@@ -117,12 +117,12 @@ public class UrlController {
         if (urlMapping.isPresent()) {
             UrlMapping mapping = urlMapping.get();
             Map<String, Object> response = new HashMap<>();
-            response.put("id", mapping.getShort_code());
+            response.put("id", mapping.getId());
             response.put("url", mapping.getUrl());
-            response.put("shortCode", mapping.getShort_code());
-            response.put("createdAt", mapping.getCreated_at());
-            response.put("updatedAt", mapping.getUpdated_at());
-            response.put("accessCount", mapping.getAccess_count());
+            response.put("shortCode", mapping.getShortCode());
+            response.put("createdAt", mapping.getCreatedAt());
+            response.put("updatedAt", mapping.getUpdatedAt());
+            response.put("accessCount", mapping.getAccessCount());
             return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.notFound().build();

@@ -11,25 +11,29 @@ import java.time.LocalDateTime;
 @Data
 public class UrlMapping {
     @Id
-    @Column(name="short_code")
-    private String short_code;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long Id;
 
     @NotBlank(message = "URL is Required")
     @Pattern(regexp = "^(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?$", message = "Invalid URL format")
     @Column(name="original_url",nullable = false)
     private String url;
 
+    @Column(name="short_code")
+    private String shortCode;
+
     @Column(name="created_at",nullable = false)
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @Column(name="updated_at",nullable = false)
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 
     @Column(name="access_count")
-    private Long access_count;
+    private int accessCount;
 
     public UrlMapping(){
-        this.created_at = LocalDateTime.now();
-        this.updated_at = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+        this.accessCount = 0;
     }
 }
