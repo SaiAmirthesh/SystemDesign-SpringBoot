@@ -16,7 +16,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*") // Added for local development
+@CrossOrigin(origins = "https://shortner-ruddy.vercel.app") // Updated for production deployment
 public class UrlController {
 
     private final UrlService urlService;
