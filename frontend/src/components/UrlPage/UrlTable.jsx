@@ -22,7 +22,7 @@ const UrlTable = ({urls , remUrl , openModal}) => {
                 urls.map((item,index)=>(
                     <tr key={item.id || index}>
                         <td style={{fontWeight:'700', color:'var(--text-main)', letterSpacing:'1px', textTransform:'uppercase'}}>
-                            <a href={`http://localhost:8080/api/${item.shortCode}`} target="_blank" rel="noopener noreferrer" style={{color:'inherit', textDecoration:'none', borderBottom:'1px solid var(--border-main)'}}>
+                            <a href={`https://urlshortner-mgzm.onrender.com/api/${item.shortCode}`} target="_blank" rel="noopener noreferrer" style={{color:'inherit', textDecoration:'none', borderBottom:'1px solid var(--border-main)'}}>
                                 {item.shortCode}
                             </a>
                         </td>
@@ -36,7 +36,7 @@ const UrlTable = ({urls , remUrl , openModal}) => {
                         </td>
                         <td style={{textAlign:'center'}}>
                             <div style={{display:'flex', gap:'4px', justifyContent:'center'}}>
-                                <button className="btn-action" onClick={() => window.open(`http://localhost:8080/api/${item.shortCode}`, '_blank')}>
+                                <button className="btn-action" onClick={() => window.open(`https://urlshortner-mgzm.onrender.com/api/${item.shortCode}`, '_blank')}>
                                     OPEN
                                 </button>
                                 <button className="btn-action" onClick={()=>openModal(item)}>

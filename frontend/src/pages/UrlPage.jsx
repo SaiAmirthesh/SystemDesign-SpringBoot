@@ -4,7 +4,7 @@ import UrlTable from '../components/UrlPage/UrlTable'
 import UpdateModal from '../components/UrlPage/UpdateModal'
 import CreateModal from '../components/UrlPage/CreateModal'
 
-const API_BASE_URL = 'http://localhost:8080/api/shorten';
+const API_BASE_URL = 'https://urlshortner-mgzm.onrender.com/api/shorten';
 
 const UrlPage = () => {
   const [urls, setUrls] = useState([]);
